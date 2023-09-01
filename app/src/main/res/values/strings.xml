@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CleanArchitecture_HILT_Flow_Sample</string>
+    <string name="txt_github_repo">Github Repositories</string>
+    <string name="hint_user_name">Enter Git User Name</string>
+    <string name="msg_no_repo_found">No Repositories found</string>
+    <string name="msg_valid_user_name">Enter valid github user name</string>
+</resources>
