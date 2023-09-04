@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding?.root)
         collectRepoData()
-        getRepoData("virajjage09")
         viewBinding?.ibSearch?.setOnClickListener {
             if (isValidUserName()) {
                 Log.d("Git User Name", viewBinding?.etUserName?.text.toString())
@@ -63,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                                 viewBinding?.pbRepoLoader?.gone()
                                 Log.d("Response Data", it.data.toString())
                                 if (it.data.isNotEmpty()) {
+                                    viewBinding?.recRepoList?.visible()
                                     repoListAdapter = RepositoryListViewAdapter(it.data)
                                     viewBinding?.recRepoList?.adapter = repoListAdapter
                                     viewBinding?.tvNoErrorMsg?.gone()

@@ -12,10 +12,8 @@ import javax.inject.Inject
 
 class DataRepositoryImpl @Inject constructor(private val api: APIInterface) : DataRepository {
     override fun getGitHubRepositories(userId: String) = flow {
-         Log.d("FLow Emit Thread", Thread.currentThread().name)
-        withContext(Dispatchers.Default) {
-            emit(api.getRepositories(userId))
-        }
+        Log.d("FLow Emit Thread", Thread.currentThread().name)
+        emit(api.getRepositories(userId))
 
     }.map { response ->
         val dataList = arrayListOf<RepoDataRecord>()

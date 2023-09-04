@@ -33,11 +33,6 @@ class RepositoryViewModel @Inject constructor(private val getRepositoryUseCase: 
                     it.printStackTrace()
                     userRepositoryData.value = GetGithubRepoFailure(it.message.toString())
                 }
-                .map {
-                    Log.d("Flow Map thread", Thread.currentThread().name)
-                    it
-                }
-                .flowOn(Dispatchers.Default)
                 .collect {
                     Log.d("Flow Collect thread", Thread.currentThread().name)
                     userRepositoryData.value = GetGithubRepoSuccess(it)
