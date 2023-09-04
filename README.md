@@ -9,3 +9,6 @@ Coroutine and Flow has been used to implement asynchronous programming.
 
 This main branch contains View implementation. check out another branch for compose UI
 
+I have used Dependency version Catalog Manager to maintain the gradle dependencies. All dependencies are present in libs.versions.toml under gradle. 
+Refer https://developer.android.com/build/migrate-to-catalogs
+
