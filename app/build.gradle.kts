@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.codervj.cleanarchitecture_sample"
+    namespace = "com.codervj.cleanarchitecturehiltflowsample"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.codervj.cleanarchitecture_sample"
+        applicationId = "com.codervj.cleanarchitecturehiltflowsample"
         minSdk = 21
         targetSdk = 33
         versionCode = 1
@@ -45,6 +45,10 @@ android {
         viewBinding = true
     }
 
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -54,8 +58,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+
 
     //Hilt dependencies
     implementation(libs.hilt)
@@ -65,4 +68,23 @@ dependencies {
 
     //Network module dependency
     implementation(project(":network"))
+
+    //Android/UI test cases dependencies
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.test.core)
+    androidTestImplementation(libs.test.core.ktx)
+    androidTestImplementation(libs.espresso.contrib)
+    androidTestImplementation(libs.espresso.idling)
+    androidTestImplementation(libs.androidx.test.ext.junit.ktx)
+
+    testImplementation(libs.espresso.core)
+    testImplementation(libs.espresso.intent)
+    testImplementation(libs.androidx.test.ext.junit.ktx)
+
+    testImplementation(libs.espresso.idling)
+
+    androidTestImplementation(libs.android.runner)
+    androidTestImplementation (libs.androidx.rules)
+    androidTestImplementation( libs.espresso.core)
 }

@@ -38,6 +38,7 @@ class RepositoryViewModel @Inject constructor(private val getRepositoryUseCase: 
                     userRepositoryData.value = GetGithubRepoSuccess(it)
                 }
         }
-
     }
+
+    fun isValidUserName(username: String?) = ((username?.isNotEmpty() == true && username.length > 3))
 }

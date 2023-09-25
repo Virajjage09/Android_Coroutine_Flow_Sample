@@ -9,8 +9,8 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.codervj.cleanarchitecture_sample.R
-import com.codervj.cleanarchitecture_sample.databinding.ActivityMainBinding
+import com.codervj.cleanarchitecturehiltflowsample.R
+import com.codervj.cleanarchitecturehiltflowsample.databinding.ActivityMainBinding
 import com.codervj.cleanarchitecturehiltflowsample.ui.adapter.RepositoryListViewAdapter
 import com.codervj.cleanarchitecturehiltflowsample.ui.state.GetGithubRepoFailure
 import com.codervj.cleanarchitecturehiltflowsample.ui.state.GetGithubRepoSuccess
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(viewBinding?.root)
         collectRepoData()
         viewBinding?.ibSearch?.setOnClickListener {
-            if (isValidUserName()) {
+            if (repositoryViewModel.isValidUserName(viewBinding?.etUserName?.text.toString())) {
                 Log.d("Git User Name", viewBinding?.etUserName?.text.toString())
                 getRepoData(viewBinding?.etUserName?.text.toString())
             } else {
@@ -44,9 +44,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun isValidUserName() = ((viewBinding?.etUserName?.text?.isNotEmpty() == true
-            && (viewBinding?.etUserName?.text?.length ?: 0) > 3))
 
     private fun getRepoData(userId: String) {
         repositoryViewModel.getRepository(userId)
@@ -62,12 +59,10 @@ class MainActivity : AppCompatActivity() {
                                 viewBinding?.pbRepoLoader?.gone()
                                 Log.d("Response Data", it.data.toString())
                                 if (it.data.isNotEmpty()) {
-                                    viewBinding?.recRepoList?.visible()
                                     repoListAdapter = RepositoryListViewAdapter(it.data)
                                     viewBinding?.recRepoList?.adapter = repoListAdapter
                                     viewBinding?.tvNoErrorMsg?.gone()
                                 } else {
-                                    viewBinding?.recRepoList?.gone()
                                     viewBinding?.tvNoErrorMsg?.visible()
                                 }
                             }
